@@ -39,7 +39,8 @@
             </plugin>
         </plugins>
     </build>
-
+    
+    <!--Переменные-->
     <properties>
         <org.eclipse.jetty.version>9.4.6.v20170531</org.eclipse.jetty.version>
         <org.freemarker.version>2.3.26-incubating</org.freemarker.version>

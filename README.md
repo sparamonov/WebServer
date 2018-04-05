@@ -1,1 +1,1 @@
-WebServiceProject on Maven with Jetty-server and Freemarker
+WebServiceProject on Maven with Jetty-server and Freemarker.
