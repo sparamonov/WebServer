@@ -38,10 +38,10 @@ public class DBService {
         configuration.addAnnotatedClass(UsersDataSet.class);
 
         configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-        configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/billing_simple");
-        configuration.setProperty("hibernate.connection.username", "root");
-        configuration.setProperty("hibernate.connection.password", "aZ2pbUz3");
+        configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
+        configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/web_server");
+        configuration.setProperty("hibernate.connection.username", "seggas");
+        configuration.setProperty("hibernate.connection.password", "1qazxsw2");
         configuration.setProperty("hibernate.show_sql", hibernate_show_sql);
         configuration.setProperty("hibernate.hbm2ddl_auto", hibernate_hbm2ddl_auto);
         return configuration;
