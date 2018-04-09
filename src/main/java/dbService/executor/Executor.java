@@ -1,13 +1,14 @@
 package dbService.executor;
 
+import practice.CreatedBy;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by seggas on 20.05.17.
- */
+@CreatedBy(author = "Seggas", date = "01.04.18")
+
 public class Executor {
     private final Connection connection;
 

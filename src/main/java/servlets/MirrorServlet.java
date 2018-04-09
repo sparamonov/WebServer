@@ -1,5 +1,6 @@
 package servlets;
 
+import practice.CreatedBy;
 import templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -13,9 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Created by seggas on 18.03.17.
- */
+@CreatedBy(author = "Seggas", date = "01.04.18")
+
 public class MirrorServlet extends HttpServlet {
 
     private static Set<Map.Entry<String, String[]>> value;

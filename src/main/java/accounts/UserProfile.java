@@ -1,8 +1,9 @@
 package accounts;
 
-/**
- * Created by seggas on 12.04.17.
- */
+import practice.CreatedBy;
+
+@CreatedBy(author = "Seggas", date = "01.04.18")
+
 public class UserProfile {
     private final String login;
     private final String pass;

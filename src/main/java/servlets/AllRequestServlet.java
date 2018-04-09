@@ -1,5 +1,6 @@
 package servlets;
 
+import practice.CreatedBy;
 import templater.PageGenerator;
 
 import javax.servlet.ServletException;
@@ -10,9 +11,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by seggas on 18.03.17.
- */
+@CreatedBy(author = "Seggas", date = "01.04.18")
+
 public class AllRequestServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {

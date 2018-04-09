@@ -1,11 +1,12 @@
 package dbService.dataSets;
 
+import practice.CreatedBy;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by seggas on 15.05.17.
- */
+@CreatedBy(author = "Seggas", date = "01.04.18")
+
 @Entity
 @Table(name = "users")
 public class UsersDataSet implements Serializable { // Serializable Important to Hibernate

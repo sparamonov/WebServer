@@ -1,11 +1,12 @@
 package accounts;
 
+import practice.CreatedBy;
+
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by seggas on 12.04.17.
- */
+@CreatedBy(author = "Seggas", date = "01.04.18")
+
 public class AccountService {
     private final Map<String, UserProfile> loginToProfile;
     private final Map<String, UserProfile> sessionIdToProfile;
