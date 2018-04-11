@@ -1,10 +1,12 @@
 package dbService.dao;
 
+import accounts.UserProfile;
 import dbService.dataSets.UsersDataSet;
 import dbService.executor.Executor;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import practice.CreatedBy;
 
 import javax.persistence.PersistenceException;
@@ -36,7 +38,11 @@ public class UsersDAO {
         return ((UsersDataSet)criteria.where(criteriaBuilder.equal(usersDataSetRoot.get("name"), name))).getId();
     }
 
-    public long insertUser(String name) throws HibernateException {
+    /*public long insertUser(String name) throws HibernateException {
         return (Long)session.save(new UsersDataSet(name));
+    }*/
+
+    public long insertUser(UserProfile userProfile) throws HibernateException {
+        return (Long)session.save(new UsersDataSet(userProfile));
     }
 }

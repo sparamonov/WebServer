@@ -2,6 +2,7 @@ package servlets;
 
 import accounts.AccountService;
 import accounts.UserProfile;
+import dbService.DBService;
 import practice.CreatedBy;
 
 import javax.servlet.ServletException;
@@ -14,8 +15,12 @@ import java.io.IOException;
 
 public class SignUpServlet extends HttpServlet {
     private final AccountService accountService;
+    private final DBService dbService;
 
-    public SignUpServlet(AccountService accountService) { this.accountService = accountService; }
+    public SignUpServlet(AccountService accountService, DBService dbService) {
+        this.accountService = accountService;
+        this.dbService = dbService;
+    }
 
     public void doPost(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
         String login = rq.getParameter("login");
@@ -28,6 +33,6 @@ public class SignUpServlet extends HttpServlet {
         }
 
         UserProfile profile = new UserProfile(login, pass, pass);
-        accountService.addNewUser(profile);
+        accountService.addNewUser(profile, dbService);
     }
 }

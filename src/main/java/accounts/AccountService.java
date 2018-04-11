@@ -1,5 +1,7 @@
 package accounts;
 
+import dbService.DBException;
+import dbService.DBService;
 import practice.CreatedBy;
 
 import java.util.HashMap;
@@ -16,7 +18,17 @@ public class AccountService {
         sessionIdToProfile = new HashMap<>();
     }
 
-    public void addNewUser(UserProfile userProfile) {loginToProfile.put(userProfile.getLogin(), userProfile); }
+
+    public void addNewUser (UserProfile userProfile, DBService dbService) {
+        try {
+            dbService.addUser(userProfile);
+        } catch (DBException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    //public void addNewUser(UserProfile userProfile) {loginToProfile.put(userProfile.getLogin(), userProfile); }
+
 
     public UserProfile getUserByLogin(String login) { return loginToProfile.get(login); }
 

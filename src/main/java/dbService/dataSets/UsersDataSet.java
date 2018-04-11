@@ -1,5 +1,6 @@
 package dbService.dataSets;
 
+import accounts.UserProfile;
 import practice.CreatedBy;
 
 import javax.persistence.*;
@@ -10,24 +11,43 @@ import java.io.Serializable;
 @Entity
 @Table(name = "users")
 public class UsersDataSet implements Serializable { // Serializable Important to Hibernate
-    private static final long serialVersionUID = -8706689714326132798L;
+    private static final long serialVersionUID = 42L;
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name", unique = true, updatable = false)
-    private String name;
+    @Column(name = "login", unique = true, updatable = false)
+    private String login;
 
-    // Important to Hibernate
-    public UsersDataSet(String name) {
-        this.id = 1;
-        this.name = name;
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "email")
+    private String email;
+
+    public UsersDataSet(UserProfile userProfile) {
+        this.setLogin(userProfile.getLogin());
+        this.setPassword(userProfile.getPass());
+        this.setEmail(userProfile.getEmail());
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public UsersDataSet(String login) {
+        this.setId(-1);
+        this.setLogin(login);
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public long getId() {
@@ -38,26 +58,27 @@ public class UsersDataSet implements Serializable { // Serializable Important to
         this.id = id;
     }
 
+    // Important to Hibernate
     @SuppressWarnings("UnusedDeclaration")
     public UsersDataSet() {
     }
 
     @SuppressWarnings("UnusedDeclaration")
     public UsersDataSet(long id, String name) {
-        this.id = id;
-        this.name = name;
+        this.setId(id);
+        this.setLogin(login);
     }
 
     @SuppressWarnings("UnusedDeclaration")
-    public String getName() {
-        return name;
+    public String getLogin() {
+        return login;
     }
 
     @Override
     public String toString() {
-        return "UsersDataSet{"
+        return "UserDataSet{"
                 + "id=" + id
-                + ", name='" + name + '\''
+                + ", login='" + login + '\''
                 + '}';
     }
 }

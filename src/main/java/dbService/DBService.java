@@ -1,5 +1,6 @@
 package dbService;
 
+import accounts.UserProfile;
 import dbService.dao.UsersDAO;
 import dbService.dataSets.UsersDataSet;
 import org.hibernate.HibernateException;
@@ -8,8 +9,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.internal.SessionFactoryImpl;
 import org.hibernate.service.ServiceRegistry;
 import practice.CreatedBy;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @CreatedBy(author = "Seggas", date = "01.04.18")
 
@@ -20,10 +25,12 @@ public class DBService {
     private final SessionFactory sessionFactory;
 
     public DBService() {
-        Configuration configuration = getMySqlConfiguration();
+        //Configuration configuration = getMySqlConfiguration();
+        Configuration configuration = getH2Configuration();
         sessionFactory = createSessionFactory(configuration);
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     private Configuration getMySqlConfiguration() {
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(UsersDataSet.class);
@@ -34,7 +41,21 @@ public class DBService {
         configuration.setProperty("hibernate.connection.username", "segas");
         configuration.setProperty("hibernate.connection.password", "1qazxsw2");
         configuration.setProperty("hibernate.show_sql", hibernate_show_sql);
-        configuration.setProperty("hibernate.hbm2ddl_auto", hibernate_hbm2ddl_auto);
+        configuration.setProperty("hibernate.hbm2ddl.auto", hibernate_hbm2ddl_auto);
+        return configuration;
+    }
+
+    private Configuration getH2Configuration() {
+        Configuration configuration = new Configuration();
+        configuration.addAnnotatedClass(UsersDataSet.class);
+
+        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        configuration.setProperty("hibernate.connection.driver_class", "org.h2.Driver");
+        configuration.setProperty("hibernate.connection.url", "jdbc:h2:./h2db");
+        configuration.setProperty("hibernate.connection.username", "test");
+        configuration.setProperty("hibernate.connection.password", "test");
+        configuration.setProperty("hibernate.show_sql", hibernate_show_sql);
+        configuration.setProperty("hibernate.hbm2ddl.auto", hibernate_hbm2ddl_auto);
         return configuration;
     }
 
@@ -57,14 +78,12 @@ public class DBService {
         }
     }
 
-    public long addUser(String name) throws DBException {
-        try {
-            Session session = sessionFactory.openSession();
+    public long addUser(UserProfile userProfile) throws DBException {
+        try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             UsersDAO dao = new UsersDAO(session);
-            long id = dao.insertUser(name);
+            long id = dao.insertUser(userProfile);
             transaction.commit();
-            session.close();
             return id;
         } catch (HibernateException e) {
             throw new DBException(e);
