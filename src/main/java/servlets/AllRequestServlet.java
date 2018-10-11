@@ -1,8 +1,6 @@
 package servlets;
 
-import practice.CreatedBy;
 import templater.PageGenerator;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +9,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@CreatedBy(author = "Seggas", date = "01.04.18")
-
 public class AllRequestServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
     public void doGet(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
         Map<String, Object> pageVars = createPageVariablesMap(rq);

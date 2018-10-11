@@ -2,20 +2,23 @@ package servlets;
 
 import accounts.AccountService;
 import accounts.UserProfile;
-import practice.CreatedBy;
-
+import dbService.DBException;
+import dbService.DBService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@CreatedBy(author = "Seggas", date = "01.04.18")
-
 public class SignUpServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
     private final AccountService accountService;
-
-    public SignUpServlet(AccountService accountService) { this.accountService = accountService; }
+    private final DBService dbService;
+    
+    public SignUpServlet(AccountService accountService, DBService dbService) { 
+        this.accountService = accountService; 
+        this.dbService = dbService;
+    }
 
     public void doPost(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
         String login = rq.getParameter("login");
@@ -27,7 +30,11 @@ public class SignUpServlet extends HttpServlet {
             return;
         }
 
-        UserProfile profile = new UserProfile(login, pass, pass);
-        accountService.addNewUser(profile);
+        UserProfile profile = new UserProfile(login, pass, login);
+        try {
+            accountService.addNewUser(profile, dbService);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
     }
 }

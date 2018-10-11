@@ -1,25 +1,17 @@
 package servlets;
 
-import practice.CreatedBy;
 import templater.PageGenerator;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-@CreatedBy(author = "Seggas", date = "01.04.18")
 
 public class MirrorServlet extends HttpServlet {
-
-    private static Set<Map.Entry<String, String[]>> value;
-
+    private static final long serialVersionUID = 1L;
+    
     public void doGet(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
         Map<String, Object> pageVars = createPageVariablesMap(rq);
         pageVars.put("message", "");
@@ -49,10 +41,7 @@ public class MirrorServlet extends HttpServlet {
 
     private static Map<String, Object> createPageVariablesMap(HttpServletRequest rq) {
         Map<String, Object> pageVars = new HashMap<>();
-//        pageVars.put("method", rq.getMethod());
-//        pageVars.put("URL", rq.getRequestURL().toString());
-//        pageVars.put("pathInfo", rq.getPathInfo());
-//        pageVars.put("sessionId", rq.getSession().getId());
+
         for (Map.Entry<String, String[]> entry : rq.getParameterMap().entrySet()) {
             pageVars.put("value", entry.getValue()[0]);
         }

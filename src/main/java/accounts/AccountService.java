@@ -1,22 +1,23 @@
 package accounts;
 
-import practice.CreatedBy;
-
 import java.util.HashMap;
 import java.util.Map;
-
-@CreatedBy(author = "Seggas", date = "01.04.18")
+import dbService.DBException;
+import dbService.DBService;
 
 public class AccountService {
     private final Map<String, UserProfile> loginToProfile;
     private final Map<String, UserProfile> sessionIdToProfile;
-
+    
     public AccountService() {
         loginToProfile = new HashMap<>();
         sessionIdToProfile = new HashMap<>();
     }
 
-    public void addNewUser(UserProfile userProfile) {loginToProfile.put(userProfile.getLogin(), userProfile); }
+    public void addNewUser(UserProfile userProfile, DBService dbService) throws DBException {
+        loginToProfile.put(userProfile.getLogin(), userProfile);
+        dbService.addUser(userProfile);
+    }
 
     public UserProfile getUserByLogin(String login) { return loginToProfile.get(login); }
 

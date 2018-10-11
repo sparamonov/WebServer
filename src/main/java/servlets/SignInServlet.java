@@ -2,21 +2,18 @@ package servlets;
 
 import accounts.AccountService;
 import accounts.UserProfile;
-import com.google.gson.Gson;
-import practice.CreatedBy;
-
+import dbService.DBService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@CreatedBy(author = "Seggas", date = "01.04.18")
-
 public class SignInServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
     private final AccountService accountService;
 
-    public SignInServlet(AccountService accountService) { this.accountService = accountService; }
+    public SignInServlet(AccountService accountService, DBService dbService) { this.accountService = accountService; }
 
     public void doPost(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
         String login = rq.getParameter("login");
