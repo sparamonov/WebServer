@@ -8,6 +8,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import accounts.AccountService;
 import dbService.DBService;
+import dbService.DBServiceImpl;
 import servlets.SignInServlet;
 import servlets.SignUpServlet;
 
@@ -17,7 +18,7 @@ public class Main {
     private static final String RESOURCE_BASE = "public_html";
         
     public static void main(String[] args) throws Exception {
-        DBService dbService = new DBService();
+        DBService dbService = new DBServiceImpl();
         dbService.printConnectInfo();
 
         AccountService accountService = new AccountService();
