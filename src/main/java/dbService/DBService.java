@@ -1,5 +1,6 @@
 package dbService;
 
+import accounts.UserProfile;
 import dbService.dao.UsersDAO;
 import dbService.dataSets.UsersDataSet;
 import org.hibernate.HibernateException;
@@ -9,7 +10,6 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import accounts.UserProfile;
 
 public class DBService {
     private static final String hibernate_show_sql = "true";
@@ -34,10 +34,10 @@ public class DBService {
         configuration.setProperty("hibernate.connection.username", "segas");
         configuration.setProperty("hibernate.connection.password", "1qazxsw2");
         configuration.setProperty("hibernate.show_sql", hibernate_show_sql);
-        configuration.setProperty("hibernate.hbm2ddl_auto", hibernate_hbm2ddl_auto);
+        configuration.setProperty("hibernate.hbm2ddl.auto", hibernate_hbm2ddl_auto);
         return configuration;
     }
-        
+
     private Configuration getH2Configuration() {
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(UsersDataSet.class);
@@ -49,10 +49,9 @@ public class DBService {
         configuration.setProperty("hibernate.connection.password", "test");
         configuration.setProperty("hibernate.show_sql", hibernate_show_sql);
         configuration.setProperty("hibernate.hbm2ddl.auto", hibernate_hbm2ddl_auto);
-        
         return configuration;
     }
-    
+        
     private static SessionFactory createSessionFactory(Configuration configuration) {
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
         builder.applySettings(configuration.getProperties());
@@ -79,7 +78,6 @@ public class DBService {
             UsersDAO dao = new UsersDAO(session);
             long id = dao.insertUser(userProfile);
             transaction.commit();
-            session.close();
             return id;
         } catch (HibernateException e) {
             throw new DBException(e);

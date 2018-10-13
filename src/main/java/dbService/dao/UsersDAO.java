@@ -1,9 +1,9 @@
 package dbService.dao;
 
+import accounts.UserProfile;
 import dbService.dataSets.UsersDataSet;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import accounts.UserProfile;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
