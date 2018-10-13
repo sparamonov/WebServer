@@ -8,12 +8,28 @@
 *.iws
 
 # VSCode
-.vscode
+.vscode/
 
 # Maven
 log/
 target/
 
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders
+
 *.sh
 *.jar
 *.db
+target/
