@@ -18,16 +18,7 @@ target/
 .classpath
 .project
 .settings/
-.metadata
 bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.loadpath
-.recommenders
 
 *.sh
 *.jar
