@@ -1,6 +1,6 @@
 package servlets;
 
-import accounts.AccountService;
+import accounts.AccountServiceI;
 import accounts.UserProfile;
 import dbService.DBService;
 import javax.servlet.ServletException;
@@ -11,9 +11,9 @@ import java.io.IOException;
 
 public class SignInServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private final AccountService accountService;
+    private final AccountServiceI accountService;
 
-    public SignInServlet(AccountService accountService, DBService dbService) { this.accountService = accountService; }
+    public SignInServlet(AccountServiceI accountService, DBService dbService) { this.accountService = accountService; }
 
     public void doPost(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
         String login = rq.getParameter("login");

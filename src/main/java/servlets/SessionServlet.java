@@ -1,6 +1,6 @@
 package servlets;
 
-import accounts.AccountService;
+import accounts.AccountServiceI;
 import accounts.UserProfile;
 import com.google.gson.Gson;
 import javax.servlet.ServletException;
@@ -11,9 +11,9 @@ import java.io.IOException;
 
 public class SessionServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private final AccountService accountService;
+    private final AccountServiceI accountService;
 
-    public SessionServlet(AccountService accountService) { this.accountService = accountService; }
+    public SessionServlet(AccountServiceI accountService) { this.accountService = accountService; }
 
     // get logged user profile
     public void doGet(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {

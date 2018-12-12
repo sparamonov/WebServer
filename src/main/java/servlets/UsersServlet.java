@@ -1,13 +1,13 @@
 package servlets;
 
-import accounts.AccountService;
+import accounts.AccountServiceI;
 import javax.servlet.http.HttpServlet;
 
 public class UsersServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private final AccountService accountService;
+    private final AccountServiceI accountService;
 
-    public UsersServlet(AccountService accountService) { 
+    public UsersServlet(AccountServiceI accountService) { 
         this.accountService = accountService; 
     }
 }

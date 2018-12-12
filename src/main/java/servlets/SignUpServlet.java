@@ -1,6 +1,6 @@
 package servlets;
 
-import accounts.AccountService;
+import accounts.AccountServiceI;
 import accounts.UserProfile;
 import dbService.DBException;
 import dbService.DBService;
@@ -12,10 +12,10 @@ import java.io.IOException;
 
 public class SignUpServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private final AccountService accountService;
+    private final AccountServiceI accountService;
     private final DBService dbService;
     
-    public SignUpServlet(AccountService accountService, DBService dbService) { 
+    public SignUpServlet(AccountServiceI accountService, DBService dbService) { 
         this.accountService = accountService; 
         this.dbService = dbService;
     }
