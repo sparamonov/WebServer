@@ -49,7 +49,7 @@
         <com.h2database.h2.version>1.4.197</com.h2database.h2.version>
         <org.hibernate.hibernate-core.version>5.2.10.Final</org.hibernate.hibernate-core.version>
         <junit.version>4.12</junit.version>
-        <org.apache.logging.log4j.version>2.11.1</org.apache.logging.log4j.version>
+        <org.apache.logging.log4j.version>2.15.0</org.apache.logging.log4j.version>
         <org.mockito.version>1.10.19</org.mockito.version>
     </properties>
 
